@@ -1,6 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
+
+func storeValueToFile(ebt, profit, ratio float64) {
+	result := fmt.Sprintf("EBT:%.1f\nProfit:%.1f\nRatio:%.1f", ebt, profit, ratio)
+	os.WriteFile("calculation.txt", []byte(result), 0644)
+}
 
 func profit_calculator() {
 	var revenue float64
@@ -14,6 +22,16 @@ func profit_calculator() {
 	fmt.Print("Tax Rate: ")
 	fmt.Scan(&taxRate)
 
+	if revenue <= 0 {
+		fmt.Println("Enter the non negative number")
+	}
+	if expense <= 0 {
+		fmt.Println("Enter the non negative number")
+	}
+	if taxRate <= 0 {
+		fmt.Println("Enter the non negative number")
+	}
+
 	// ebt := revenue - expense
 	// profit := ebt * (1 - taxRate/100)
 	// ratio := ebt / profit
@@ -24,6 +42,9 @@ func profit_calculator() {
 	fmt.Printf("%.1f\n", profit)
 	fmt.Print("Ratio:")
 	fmt.Printf("%.1f\n", ratio)
+
+	storeValueToFile(ebt, profit, ratio)
+
 }
 func calculateProfit(revenue float64, expense float64, taxRate float64) (ebt float64, profit float64, ratio float64) {
 	ebt = revenue - expense

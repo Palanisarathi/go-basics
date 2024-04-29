@@ -1,119 +1,116 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-	"os"
-	"strconv"
-)
-
-const accountBalanceFile = "balance.txt"
-
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
-}
-func getBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile(accountBalanceFile)
-	if err != nil {
-		return 1000, errors.New("File is not found")
-	}
-	balanceText := string(data)
-	balance, err := strconv.ParseFloat(balanceText, 64)
-	if err != nil {
-		return 1000, err
-	}
-	return balance, err
-
-}
 func main() {
-	accountBalance, err := getBalanceFromFile()
-	if err != nil {
-		panic("Sorry cannot continue..")
-	}
-
-	for {
-		fmt.Println("Welcome to Go Bank!")
-		fmt.Println("What do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposite Money")
-		fmt.Println("3. Withdraw Money")
-		fmt.Println("4. Exit")
-
-		var choice int
-		fmt.Print("Your choice is: ")
-		fmt.Scan(&choice)
-		fmt.Println("Your choice:", choice)
-
-		switch choice {
-		case 1:
-			fmt.Println("Your balance is:", accountBalance)
-		case 2:
-			fmt.Println("Enter the amount to deposit:")
-			var deposit float64
-			fmt.Scan(&deposit)
-			if deposit <= 0 {
-				fmt.Println("Invalid deposite amount. Must be greater than 0")
-				continue
-			}
-
-			accountBalance += deposit
-			writeBalanceToFile(accountBalance)
-			fmt.Print("Your new balance is ", accountBalance)
-		case 3:
-			fmt.Println("Enter the amount to withdraw:")
-			var withdraw float64
-			fmt.Scan(&withdraw)
-			if withdraw <= 0 {
-				fmt.Println("Invalid amount. Amount must be greater than 0")
-				continue
-			}
-			if withdraw > accountBalance {
-				fmt.Println("withdrawal amount is greater than accountbalance")
-				continue
-			}
-			accountBalance -= withdraw
-			writeBalanceToFile(accountBalance)
-			fmt.Print("Your new balance is ", accountBalance)
-		default:
-			fmt.Println("Goodbye!")
-			return
-		}
-
-		// if choice == 1 {
-		// 	fmt.Println("Your balance is:", accountBalance)
-		// } else if choice == 2 {
-		// 	fmt.Println("Enter the amount to deposit:")
-		// 	var deposit float64
-		// 	fmt.Scan(&deposit)
-		// 	if deposit <= 0 {
-		// 		fmt.Println("Invalid deposite amount. Must be greater than 0")
-		// 		continue
-		// 	}
-
-		// 	accountBalance += deposit
-		// 	fmt.Print("Your new balance is ", accountBalance)
-		// } else if choice == 3 {
-		// 	fmt.Println("Enter the amount to withdraw:")
-		// 	var withdraw float64
-		// 	fmt.Scan(&withdraw)
-		// 	if withdraw <= 0 {
-		// 		fmt.Println("Invalid amount. Amount must be greater than 0")
-		// 		continue
-		// 	}
-		// 	if withdraw > accountBalance {
-		// 		fmt.Println("withdrawal amount is greater than accountbalance")
-		// 		continue
-		// 	}
-		// 	accountBalance -= withdraw
-		// 	fmt.Print("Your new balance is ", accountBalance)
-		// } else {
-		// 	fmt.Println("Goodbye!")
-		// 	break
-		// }
-	}
-
+	profit_calculator()
 }
+
+// const accountBalanceFile = "balance.txt"
+
+// func writeBalanceToFile(balance float64) {
+// 	balanceText := fmt.Sprint(balance)
+// 	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
+// }
+// func getBalanceFromFile() (float64, error) {
+// 	data, err := os.ReadFile(accountBalanceFile)
+// 	if err != nil {
+// 		return 1000, errors.New("File is not found")
+// 	}
+// 	balanceText := string(data)
+// 	balance, err := strconv.ParseFloat(balanceText, 64)
+// 	if err != nil {
+// 		return 1000, err
+// 	}
+// 	return balance, err
+
+// }
+// func main() {
+// 	accountBalance, err := getBalanceFromFile()
+// 	if err != nil {
+// 		panic("Sorry cannot continue..")
+// 	}
+
+// 	for {
+// 		fmt.Println("Welcome to Go Bank!")
+// 		fmt.Println("What do you want to do?")
+// 		fmt.Println("1. Check balance")
+// 		fmt.Println("2. Deposite Money")
+// 		fmt.Println("3. Withdraw Money")
+// 		fmt.Println("4. Exit")
+
+// 		var choice int
+// 		fmt.Print("Your choice is: ")
+// 		fmt.Scan(&choice)
+// 		fmt.Println("Your choice:", choice)
+
+// 		switch choice {
+// 		case 1:
+// 			fmt.Println("Your balance is:", accountBalance)
+// 		case 2:
+// 			fmt.Println("Enter the amount to deposit:")
+// 			var deposit float64
+// 			fmt.Scan(&deposit)
+// 			if deposit <= 0 {
+// 				fmt.Println("Invalid deposite amount. Must be greater than 0")
+// 				continue
+// 			}
+
+// 			accountBalance += deposit
+// 			writeBalanceToFile(accountBalance)
+// 			fmt.Print("Your new balance is ", accountBalance)
+// 		case 3:
+// 			fmt.Println("Enter the amount to withdraw:")
+// 			var withdraw float64
+// 			fmt.Scan(&withdraw)
+// 			if withdraw <= 0 {
+// 				fmt.Println("Invalid amount. Amount must be greater than 0")
+// 				continue
+// 			}
+// 			if withdraw > accountBalance {
+// 				fmt.Println("withdrawal amount is greater than accountbalance")
+// 				continue
+// 			}
+// 			accountBalance -= withdraw
+// 			writeBalanceToFile(accountBalance)
+// 			fmt.Print("Your new balance is ", accountBalance)
+// 		default:
+// 			fmt.Println("Goodbye!")
+// 			return
+// 		}
+
+// if choice == 1 {
+// 	fmt.Println("Your balance is:", accountBalance)
+// } else if choice == 2 {
+// 	fmt.Println("Enter the amount to deposit:")
+// 	var deposit float64
+// 	fmt.Scan(&deposit)
+// 	if deposit <= 0 {
+// 		fmt.Println("Invalid deposite amount. Must be greater than 0")
+// 		continue
+// 	}
+
+// 	accountBalance += deposit
+// 	fmt.Print("Your new balance is ", accountBalance)
+// } else if choice == 3 {
+// 	fmt.Println("Enter the amount to withdraw:")
+// 	var withdraw float64
+// 	fmt.Scan(&withdraw)
+// 	if withdraw <= 0 {
+// 		fmt.Println("Invalid amount. Amount must be greater than 0")
+// 		continue
+// 	}
+// 	if withdraw > accountBalance {
+// 		fmt.Println("withdrawal amount is greater than accountbalance")
+// 		continue
+// 	}
+// 	accountBalance -= withdraw
+// 	fmt.Print("Your new balance is ", accountBalance)
+// } else {
+// 	fmt.Println("Goodbye!")
+// 	break
+// }
+//}
+
+//}
 
 //const inflationRate float64 = 2.5
 // var investmentAmount float64
