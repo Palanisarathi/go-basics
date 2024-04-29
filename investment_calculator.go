@@ -6,7 +6,7 @@ import (
 
 func main() {
 	accountBalance := 1000.0
-	for i := 0; i < 2; i++ {
+	for {
 		fmt.Println("Welcome to Go Bank!")
 		fmt.Println("What do you want to do?")
 		fmt.Println("1. Check balance")
@@ -44,6 +44,7 @@ func main() {
 			fmt.Print("Your new balance is ", accountBalance)
 		} else {
 			fmt.Println("Goodbye!")
+			return
 		}
 	}
 
