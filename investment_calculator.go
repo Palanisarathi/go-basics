@@ -26,6 +26,7 @@ func main() {
 			fmt.Scan(&deposit)
 			if deposit <= 0 {
 				fmt.Println("Invalid deposite amount. Must be greater than 0")
+				continue
 			}
 
 			accountBalance += deposit
@@ -36,15 +37,17 @@ func main() {
 			fmt.Scan(&withdraw)
 			if withdraw <= 0 {
 				fmt.Println("Invalid amount. Amount must be greater than 0")
+				continue
 			}
 			if withdraw > accountBalance {
 				fmt.Println("withdrawal amount is greater than accountbalance")
+				continue
 			}
 			accountBalance -= withdraw
 			fmt.Print("Your new balance is ", accountBalance)
 		} else {
 			fmt.Println("Goodbye!")
-			return
+			break
 		}
 	}
 
