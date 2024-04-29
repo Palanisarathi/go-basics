@@ -14,13 +14,20 @@ func profit_calculator() {
 	fmt.Print("Tax Rate: ")
 	fmt.Scan(&taxRate)
 
-	ebt := revenue - expense
-	profit := ebt * (1 - taxRate/100)
-	ratio := ebt / profit
+	// ebt := revenue - expense
+	// profit := ebt * (1 - taxRate/100)
+	// ratio := ebt / profit
+	ebt, profit, ratio := calculateProfit(revenue, expense, taxRate)
 	fmt.Print("Earnings:")
-	fmt.Println(ebt)
+	fmt.Printf("%.1f\n", ebt)
 	fmt.Print("Profit:")
-	fmt.Println(profit)
+	fmt.Printf("%.1f\n", profit)
 	fmt.Print("Ratio:")
-	fmt.Println(ratio)
+	fmt.Printf("%.1f\n", ratio)
+}
+func calculateProfit(revenue float64, expense float64, taxRate float64) (ebt float64, profit float64, ratio float64) {
+	ebt = revenue - expense
+	profit = ebt * (1 - taxRate/100)
+	ratio = ebt / profit
+	return ebt, profit, ratio
 }
