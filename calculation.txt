@@ -1,3 +1,3 @@
-EBT:44.0
-Profit:40.5
-Ratio:1.1
+EBT:8.0
+Profit:7.8
+Ratio:1.0
