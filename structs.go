@@ -24,7 +24,7 @@ func main() {
 		birthDate:   userBirthDate,
 		createdTime: time.Now(),
 	}
-	printUserDetails(appUser)
+	printUserDetails(&appUser)
 }
 
 func getInputFromUser(message string) string {
@@ -34,6 +34,6 @@ func getInputFromUser(message string) string {
 	return input
 }
 
-func printUserDetails(u user) {
+func printUserDetails(u *user) {
 	fmt.Printf("firstName: %v LastName:%v birthDate:%v createdTime:%v", u.firstName, u.lastName, u.birthDate, u.createdTime)
 }
