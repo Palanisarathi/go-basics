@@ -12,21 +12,31 @@ type user struct {
 	createdTime time.Time
 }
 
+func newUser(firstName string, lastName string, birthDate string) *user {
+	return &user{
+		firstName:   firstName,
+		lastName:    lastName,
+		birthDate:   birthDate,
+		createdTime: time.Now(),
+	}
+
+}
+
 func main() {
 	userFirstName := getInputFromUser("Enter the firstname:")
 	userLastName := getInputFromUser("Enter the lastName:")
 	userBirthDate := getInputFromUser("Enter the birthDate:")
 
-	var appUser user
-	appUser = user{
-		firstName:   userFirstName,
-		lastName:    userLastName,
-		birthDate:   userBirthDate,
-		createdTime: time.Now(),
-	}
-	printUserDetails(&appUser)
+	var appUser *user
+	appUser = newUser(userFirstName, userLastName, userBirthDate)
+	appUser.printUserDetails()
+	appUser.clearUserName()
+	appUser.printUserDetails()
 }
-
+func (u *user) clearUserName() {
+	u.firstName = ""
+	u.lastName = ""
+}
 func getInputFromUser(message string) string {
 	fmt.Println(message)
 	var input string
@@ -34,6 +44,6 @@ func getInputFromUser(message string) string {
 	return input
 }
 
-func printUserDetails(u *user) {
-	fmt.Printf("firstName: %v LastName:%v birthDate:%v createdTime:%v", u.firstName, u.lastName, u.birthDate, u.createdTime)
+func (u *user) printUserDetails() {
+	fmt.Printf(u.firstName, u.lastName, u.birthDate, u.createdTime)
 }
