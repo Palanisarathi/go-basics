@@ -13,7 +13,7 @@ type User struct {
 	createdTime time.Time
 }
 
-func NewUser(firstName string, lastName string, birthDate string) (*User, error) {
+func New(firstName string, lastName string, birthDate string) (*User, error) {
 	if firstName == "" || lastName == "" || birthDate == "" {
 		return nil, errors.New("Firstname, Last name and birth date are required")
 	}
