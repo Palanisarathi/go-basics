@@ -1,0 +1,15 @@
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	age := 32
+// 	var agePointer *int
+// 	agePointer = &age
+// 	fmt.Println("age:", *agePointer)
+// 	editAgeAdultToYears(agePointer)
+// 	fmt.Println("Adult age:", age)
+// }
+// func editAgeAdultToYears(age *int) {
+// 	*age = *age - 18
+// }
