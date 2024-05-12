@@ -13,6 +13,12 @@ type User struct {
 	createdTime time.Time
 }
 
+type Admin struct {
+	email    string
+	password string
+	User     User
+}
+
 func New(firstName string, lastName string, birthDate string) (*User, error) {
 	if firstName == "" || lastName == "" || birthDate == "" {
 		return nil, errors.New("Firstname, Last name and birth date are required")
@@ -25,6 +31,18 @@ func New(firstName string, lastName string, birthDate string) (*User, error) {
 		createdTime: time.Now(),
 	}, nil
 
+}
+func NewAdmin(email string, password string) Admin {
+	return Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName:   "ADMIN",
+			lastName:    "ADMIN",
+			birthDate:   "---",
+			createdTime: time.Now(),
+		},
+	}
 }
 func (u *User) ClearUserName() {
 	u.firstName = ""
